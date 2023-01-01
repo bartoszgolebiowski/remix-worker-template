@@ -1,9 +1,7 @@
-import type {
-  MetaFunction,
-  LinksFunction,
-  LoaderFunction,
-} from '@remix-run/cloudflare';
+import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare';
+import { json } from '@remix-run/cloudflare';
 import { useLoaderData } from '@remix-run/react';
+import initSqlJs from 'sql.js';
 
 export let meta: MetaFunction = () => {
   return {
@@ -16,19 +14,25 @@ export let links: LinksFunction = () => {
   return [];
 };
 
-export let loader: LoaderFunction = async ({ request }) => {
-  return {
-    title: 'remix-worker-template',
-  };
+export const loader = async () => {
+  const buffer = await fetch(
+    'https://pub-a6fa47933ebb4d7a87a1c7e68ab36da0.r2.dev/flaschard'
+  ).then((res) => res.arrayBuffer());
+
+  const SQL = await initSqlJs();
+  const db = new SQL.Database(new Uint8Array(buffer));
+  const res = db.exec('SELECT * FROM tbl1');
+  console.log(res);
+  return json(JSON.stringify(res));
 };
 
 export default function Index() {
-  let { title } = useLoaderData();
+  let res = useLoaderData();
 
   return (
     <div>
       <div className="sm:px-10 p-5">
-        <h2 className="mt-6 text-xl">{title}</h2>
+        <h2 className="mt-6 text-xl">{JSON.stringify(res)}</h2>
         <p className="py-2">
           All-in-one remix starter template for Cloudflare Workers
         </p>
