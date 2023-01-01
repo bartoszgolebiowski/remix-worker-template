@@ -31,4 +31,4 @@ async function build() {
   }
 }
 
-build().catch((e) => console.error('Unknown error caught during build:', e));
+build().catch((e) => console.error('Unknown error caught during build: ', e));
