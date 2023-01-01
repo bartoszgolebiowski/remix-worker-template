@@ -4,6 +4,7 @@ specifiers:
   '@cloudflare/kv-asset-handler': ^0.2.0
   '@cloudflare/workers-types': ^3.18.0
   '@playwright/test': ^1.28.1
+  '@remix-run/cloudflare': ^1.9.0
   '@remix-run/cloudflare-workers': '*'
   '@remix-run/dev': '*'
   '@remix-run/eslint-config': '*'
@@ -29,6 +30,7 @@ specifiers:
 
 dependencies:
   '@cloudflare/kv-asset-handler': 0.2.0
+  '@remix-run/cloudflare': 1.9.0_dp7lsxfcjoxmh2gy56a7syibgu
   '@remix-run/cloudflare-workers': 1.9.0_dp7lsxfcjoxmh2gy56a7syibgu
   '@remix-run/react': 1.9.0_biqbaboplfbrettd7655fr4n2y
   isbot: 3.6.5

@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.2.0",
+    "@remix-run/cloudflare": "^1.9.0",
     "@remix-run/cloudflare-workers": "*",
     "@remix-run/react": "*",
     "isbot": "^3.6.5",

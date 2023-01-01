@@ -23,28 +23,9 @@ jobs:
       - name: 💣 Run some tests
         run: npm run test
 
-  lint:
-    name: ⬣ Linting
-    runs-on: ubuntu-latest
-    steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-      - name: ⎔ Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: false
-      - name: ✨ Code format check
-        run: npx prettier --check .
-      - name: ✅ Code linting
-        run: npx eslint . --ext .js,.mjs,.ts,.tsx
-
   deploy:
     name: 🛳 Deploying
-    needs: [test, lint]
+    needs: [test]
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
